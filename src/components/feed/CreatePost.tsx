@@ -67,7 +67,7 @@ const CreatePost = () => {
               <Input
                 onChange={handlePostText}
                 placeholder="Start a thread..."
-                className="border-none bg-white focus-visible:ring-0"
+                className="border-none bg-white focus-visible:ring-0 w-full"
               />
             </div>
           </div>

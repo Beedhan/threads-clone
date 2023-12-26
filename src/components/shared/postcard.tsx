@@ -1,4 +1,4 @@
-import type { Thread } from "@prisma/client";
+import type { User } from "@prisma/client";
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
@@ -8,14 +8,31 @@ import {
 } from "../ui/hover-card";
 import { Button } from "../ui/button";
 
-const Postcard = ({ post }: { post: Thread[] }) => {
+type ThreadWithUser = {
+  User: {
+    name: string | null;
+    username: string | null;
+    image: string | null;
+    email: string | null;
+  };
+} & {
+  id: string;
+  text: string;
+  threadsId: string;
+  inReplyToId: string | null;
+  postOn: Date;
+  userId: string;
+};
+const Postcard = ({ post }: { post: ThreadWithUser[] }) => {
   return (
     <div className="border-b-2 py-2">
       <div className="flex items-center gap-2">
         <div className="flex flex-col items-center">
           <Avatar>
-            <AvatarImage src="/avatar.jpg" />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarImage src={post[0]?.User.image ?? ""} />
+            <AvatarFallback>
+              {post[0]?.User?.email?.split("@")[0]}
+            </AvatarFallback>
           </Avatar>
           <div className="relative h-full">
             <div className="absolute">
@@ -38,17 +55,21 @@ const Postcard = ({ post }: { post: Thread[] }) => {
         <div className="flex flex-col justify-center gap-0">
           <HoverCard>
             <HoverCardTrigger>
-              <p className="cursor-pointer text-sm font-semibold">Beedhan.js</p>
+              <p className="cursor-pointer text-sm font-semibold">
+                {post[0]?.User?.email?.split("@")[0]}
+              </p>
             </HoverCardTrigger>
             <HoverCardContent className="w-80 rounded-lg p-5">
               <div className="flex justify-between">
                 <div>
-                  <p className="text-md font-bold">Name</p>
-                  <p className="text-md">Beedhan.js</p>
+                  <p className="text-md font-bold">{post[0]?.User.name}</p>
+                  <p className="text-md">{post[0]?.User.username}</p>
                 </div>
                 <Avatar>
-                  <AvatarImage src="/avatar.jpg" />
-                  <AvatarFallback>CN</AvatarFallback>
+                  <AvatarImage src={post[0]?.User.image ?? ""} />
+                  <AvatarFallback>
+                    {post[0]?.User?.email?.split("@")[0]}
+                  </AvatarFallback>
                 </Avatar>
               </div>
               <p className="text-md mt-4">Description</p>

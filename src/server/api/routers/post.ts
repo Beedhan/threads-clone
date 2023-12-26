@@ -14,7 +14,7 @@ export const postRouter = createTRPCRouter({
               User:{
                 connect:{
                   id:ctx.session.user.id
-                },
+                }
               }
             },
           },
@@ -31,7 +31,8 @@ export const postRouter = createTRPCRouter({
                 select:{
                   name:true,
                   image:true,
-                  username:true
+                  username:true,
+                  email:true
                 }
               },
             }

@@ -50,16 +50,15 @@ model Session {
 model User {
     id            String    @id @default(cuid())
     name          String?
-    email         String?   @unique
+    email         String    @unique
     password      String?
     username      String?   @unique
     emailVerified DateTime?
     image         String?
     accounts      Account[]
     sessions      Session[]
-    Thread        Thread?   @relation(fields: [threadId], references: [id])
-    threadId      String?
     Like          Like[]
+    Thread        Thread[]
 }
 
 model VerificationToken {
@@ -81,11 +80,12 @@ model Thread {
     Threads     Threads  @relation(fields: [threadsId], references: [id])
     threadsId   String
     likes       Like[]
-    User        User[]
     replies     Thread[] @relation("ReplyToThread")
     inReplyTo   Thread?  @relation("ReplyToThread", fields: [inReplyToId], references: [id])
     inReplyToId String?
     postOn      DateTime @default(now())
+    User        User     @relation(fields: [userId], references: [id])
+    userId      String
 }
 
 model Like {

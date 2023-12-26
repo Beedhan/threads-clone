@@ -3,6 +3,7 @@ import Head from "next/head";
 import CreatePost from "@/components/feed/CreatePost";
 import Posts from "@/components/feed/Posts";
 import Navbar from "@/components/shared/navbar";
+import UserDetails from "@/components/shared/kyu";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <main className=" mx-auto flex min-h-screen w-2/5 flex-col px-4 ">
         <CreatePost />
         <Posts/>
+        <UserDetails/>
       </main>
     </>
   );
