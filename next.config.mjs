@@ -3,7 +3,6 @@
  * for Docker builds.
  */
 await import("./src/env.mjs");
-import {withHydrationOverlay} from "@builder.io/react-hydration-overlay/next"
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
