@@ -10,15 +10,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Feed from "@/assets/icons/feed.svg"
-import FeedSelected from "@/assets/icons/feed_selected.svg"
+// import FeedSelected from "@/assets/icons/feed_selected.svg"
+// import WriteSelected from "@/assets/icons/write_selected.svg"
+// import ExploreSelected from "@/assets/icons/explore_selected.svg"
+// import HeartSelected from "@/assets/icons/heart_selected.svg"
+// import UserSelected from "@/assets/icons/user_selected.svg"
 import Explore from "@/assets/icons/explore.svg"
-import ExploreSelected from "@/assets/icons/explore_selected.svg"
 import Heart from "@/assets/icons/heart.svg"
-import HeartSelected from "@/assets/icons/heart_selected.svg"
 import User from "@/assets/icons/user.svg"
-import UserSelected from "@/assets/icons/user_selected.svg"
 import Write from "@/assets/icons/write.svg"
-import WriteSelected from "@/assets/icons/write_selected.svg"
 import Menu from "@/assets/icons/menu.svg"
 const Navbar = () => {
   return (

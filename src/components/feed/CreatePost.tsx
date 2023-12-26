@@ -1,17 +1,14 @@
-import React, { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "../ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogTrigger,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
+  DialogHeader
 } from "@/components/ui/dialog";
-import { Input } from "../ui/input";
 import { api } from "@/utils/api";
+import React, { useState } from "react";
 import { toast } from "sonner";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 
 const CreatePost = () => {
   const [createPopup, setCreatePopup] = useState(false);
