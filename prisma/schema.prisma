@@ -85,6 +85,7 @@ model Thread {
     replies     Thread[] @relation("ReplyToThread")
     inReplyTo   Thread?  @relation("ReplyToThread", fields: [inReplyToId], references: [id])
     inReplyToId String?
+    postOn      DateTime @default(now())
 }
 
 model Like {

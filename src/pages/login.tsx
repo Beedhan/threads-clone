@@ -15,11 +15,11 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import {toast} from "sonner";
+import { toast } from "sonner";
 import type { z } from "zod";
 const Signin = () => {
   const [login, setLogin] = useState(true);
-  const [signingIn,setSigningIn] = useState(false);
+  const [signingIn, setSigningIn] = useState(false);
   const { mutateAsync, isLoading } = api.auth.signup.useMutation();
   const router = useRouter();
   const form = useForm<z.infer<typeof LoginSchema>>({
@@ -32,14 +32,18 @@ const Signin = () => {
 
   const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
     if (login) {
-        setSigningIn(true);
-        const res = await signIn("credentials", { ...values, callbackUrl: "/",redirect:false });
-        if(res&&res.status===401){
-          setSigningIn(false);
-          toast.error("Credentials error");
-        }else{
-          router.replace("/");
-        }
+      setSigningIn(true);
+      const res = await signIn("credentials", {
+        ...values,
+        callbackUrl: "/",
+        redirect: false,
+      });
+      if (res && res.status === 401) {
+        setSigningIn(false);
+        toast.error("Credentials error");
+      } else {
+        router.replace("/");
+      }
     } else {
       await mutateAsync(values, {
         onSuccess: (data) => {
@@ -89,7 +93,11 @@ const Signin = () => {
             )}
           />
           <Button type="submit" className="w-full" size={"lg"}>
-            {isLoading||signingIn ? <Loader className="animate-spin" size={18}/> : <>{login ? "Log In" : "Sign Up"}</>}
+            {isLoading || signingIn ? (
+              <Loader className="animate-spin" size={18} />
+            ) : (
+              <>{login ? "Log In" : "Sign Up"}</>
+            )}
           </Button>
         </form>
       </Form>

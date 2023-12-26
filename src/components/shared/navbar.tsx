@@ -22,7 +22,7 @@ import WriteSelected from "@/assets/icons/write_selected.svg"
 import Menu from "@/assets/icons/menu.svg"
 const Navbar = () => {
   return (
-    <nav className="mx-auto flex w-4/5 items-center justify-between pr-8 py-1">
+    <nav className="mx-auto flex w-4/5 items-center justify-between pr-8 py-1 sticky top-0 z-50 bg-white/95 backdrop-blur-sm">
       <Logo />
       <div className="flex gap-3">
         <Button variant={"ghost"} className="p-8">

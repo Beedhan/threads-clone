@@ -1,9 +1,9 @@
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { type AppType } from "next/app";
-import { Toaster } from "sonner";
 import { api } from "@/utils/api";
 import { HydrationOverlay } from "@builder.io/react-hydration-overlay";
+import { Toaster } from "@/components/ui/sonner"
 
 import "@/styles/globals.css";
 

@@ -46,21 +46,28 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/login",
   },
+  session: {
+    strategy: "jwt",
+  },
+  debug: true,
   callbacks: {
-    jwt:  ({ token, user }) => {
-      if(user){
+    jwt: ({ token, user }) => {
+      if (user) {
         token.id = user.id;
-        token.email = user.email
+        token.email = user.email;
       }
       return token;
     },
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
-      },
-    }),
+    session: ({ session, user,token }) => {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+          email:token.email
+        },
+      };
+    },
   },
   adapter: PrismaAdapter(db),
   providers: [
@@ -84,13 +91,13 @@ export const authOptions: NextAuthOptions = {
         if (!user) return null;
         if (!user.password) return null;
         // if (!user.username) return null;
-        
-        const isValidPassword = await verify(user.password as string, creds.password);
+
+        const isValidPassword = await verify(user.password, creds.password);
         if (!isValidPassword) return null;
         return {
           id: user.id,
           email: user.email,
-          username: user.username as string,
+          username: user.username,
         };
       },
     }),
